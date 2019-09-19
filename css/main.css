@@ -1,0 +1,183 @@
+.sec_first {
+    display: flex;
+    justify-content: center;
+    
+    
+    
+}
+.sec_first_continer{
+    margin-top:0px;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;   
+    width: 100vw; 
+    /* position: absolute; */
+}
+
+.arrow {
+ 
+    display: block;
+    border-right: 5px solid white;
+    border-bottom:  5px solid white;
+    margin: 0 auto;  
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    
+
+    bottom: 15%;
+    left: calc(50% - 32px);
+    animation: moveArrow 1.5s 1s ease-in-out infinite;
+
+    transform: translate(50%, 50%);
+    transform: rotate(45deg);
+    
+    
+}
+
+@keyframes moveArrow {
+    0%{bottom: 10%
+
+    }
+
+    50%{ bottom: 12%
+
+    }
+
+    100% { bottom: 10%
+
+    }
+}
+.sec_first h1 {
+    color: white;
+
+}
+
+.photo {
+    margin: 10px;
+}
+
+
+.img_small {
+    height: 280px;
+    width: 280px;
+
+}
+
+.sec_second {
+
+  
+       
+    display: flex;
+    justify-content: center;
+    flex-wrap:  wrap;
+} 
+
+
+.btn-container {
+    display: flex;
+    justify-content: space-around;
+   
+}
+
+.btn-primary {
+    height: 50px;
+    width: 200px;
+}
+
+.info_panel {
+    height: 300px;
+    padding: 50px;
+}
+
+.dropdown {
+    display: flex;
+    justify-content: space-between; 
+}
+
+.martianDay {
+    display: flex;
+    justify-content: space-between;
+}
+.martianDay input {
+    width:30%;
+}
+
+.lightbox {
+    height: 300vh;
+    width: 300vw;
+    top:-100%;
+    margin:0;
+    padding:0;
+    background: gray;
+    opacity: 0.8;
+    position: fixed;
+  
+   
+}
+
+.img_big{ 
+  max-width: 1200px; 
+  max-height: 90%; 
+  top: 50%;
+  left: 50%;
+  position: fixed;
+
+  transform: translate(-50%, -50%);
+    
+
+    background: white;
+    z-index: 1;
+}
+
+#cls {
+    position: fixed;
+    top: 1%;
+    left:85%;
+    z-index: 1;
+    font-size: 16px;
+    background: white;
+    width: 100px;
+    height: 25px;
+    border-radius: 20px;
+
+}
+
+.pic_descr {
+    position: fixed;
+    top: 1%;
+    left: 15%;
+    font-size:12px;
+    background: white;
+    padding: 5px;
+    border-radius: 20px;
+    
+}
+
+.info_sec {
+    height: 110vh;
+}
+.search_ribbon {
+    display: flex !important;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.form-control {
+    width: 250px !important;
+}
+.accept {
+    color:#007bff !important;
+}
+
+.info_sec {
+    background: url('http://mars.jpl.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/02300/opgs/edr/fcam/FLA_601686245EDR_F0732112FHAZ00302M_.JPG');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
