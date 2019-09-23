@@ -130,10 +130,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
 
-    // diplayPhotos();
-
-
-
     $('.dropdown-item').on('click', function (e) {
         e.preventDefault();
         console.log("klik")
