@@ -15,7 +15,7 @@
     background-size: cover;
     background-position: center;   
     width: 100vw; 
-    /* position: absolute; */
+   
 }
 
 .arrow {
@@ -59,6 +59,7 @@
 
 .photo {
     margin: 10px;
+
 }
 
 
@@ -159,7 +160,7 @@
 }
 
 .info_sec {
-    height: 110vh;
+    height: 970px;
 }
 .search_ribbon {
     display: flex !important;
@@ -181,3 +182,80 @@
     background-size: cover;
     background-position: center;
 }
+
+.choose {
+    color:white;
+}
+
+.panel {
+    height: 140px;
+    background:rgba(211,211,211 ,0.6 );
+    padding: 20px;
+}
+th, td {
+    text-align: center !important;
+    
+}
+.ok {
+    width: 150px;
+}
+.nbInput{
+width: 150px !important;
+}
+.fbox {
+    display: flex;
+    justify-content: space-between;
+}
+
+.chooseSol {
+    width: auto !important;
+}
+.asideTable {
+    width: 350px !important;
+    
+}
+
+.cls{
+    color: whitesmoke;
+    font-size:18px;
+    text-decoration: underline;
+    
+
+}
+i {
+    margin-left: 10px;
+}
+
+.asideTable {
+    display: none;
+   z-index: 1;
+    position: absolute;
+    opacity: 0.8;
+}
+
+.photos_sec {
+    background:rgba(211,211,211 ,0.6 );
+    padding-top: 25px;
+    
+    
+}
+
+.page-link{
+    background: lightslategrey !important;
+    color: white !important;
+}
+#pg_active {
+    background: #454d55!important;
+}
+
+#prevLink, #nextLink {
+    background:#6c757d !important;
+}
+
+#nextLink:hover {
+    background:#5a6066 !important;
+}
+#prevLink:hover {
+    background:#5a6066 !important;
+}
+  

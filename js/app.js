@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (object != null) {
         if (index >= (object.photos.length - object.photos.length % 6-6)){
-            $(".third_page").text("");
+            $(".third_page").css("opacity", '0');
         } 
     }
     }
@@ -130,13 +130,12 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
 
-    $('.dropdown-item').on('click', function (e) {
+    $('.mission_btn').on('click', function (e) {
         e.preventDefault();
-        console.log("klik")
-        $(this).closest('.dropdown').find('a.btn').text($(this).text());
         let rover = $(this).text();
-        $(".first-list").slideDown();
-        $(".second_header").addClass("search_ribbon")
+        $(".mission_btn").removeClass("active");
+        $(this).addClass('active');
+        
 
         $.ajax({
             url: `https://api.nasa.gov/mars-photos/api/v1/manifests/${rover}?&api_key=RSvcKCmoFW3dPRfkvReqq8bqL69Q78uAy1XqYh1l`,
@@ -161,7 +160,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     $(".accept").on("click", function (e) {
         e.preventDefault();
-        let roverName = $('.missionName').text();
+        console.log("hello");
+        let roverName = $('.btn-group').find('.active').text();
+        console.log(roverName);
         let solNumber = $('.pickNumber').val();
         diplayPhotos(roverName, solNumber);
         pagination(0);
@@ -172,8 +173,8 @@ document.addEventListener('DOMContentLoaded', function () {
     })
 
     $("body").on("click", ".photo", function () {
-        console.log("klik")
-        console.log($(this))
+       
+   
         console.log($(this).children()[0].currentSrc)
         $("body").append('<div class="lightbox"></div>')
         $("body").css('overflow-x', 'hidden');
@@ -217,7 +218,32 @@ document.addEventListener('DOMContentLoaded', function () {
         }, 500);
     });
 
+    $('.mission-info').on('click', function(e){
+        e.stopPropagation();
+    $('.asideTable').fadeIn();
+ 
+        
+    })
+    
+    $('.cls').on('click', function(e){
+        e.preventDefault()
+        $('.asideTable').fadeOut();
+       
+    })
 
+    $('body').on('click', function(e){
+        e.preventDefault()
+        $('.asideTable').fadeOut();
+       
+    })
+    $('.asideTable').on('click', function (e){
+        e.stopPropagation();
+    })
+  
+  
+  
 
+    
+   
 
 });
