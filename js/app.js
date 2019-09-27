@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
+    let i = 0;
 
     function setPhoto(index, object) {
 
@@ -15,24 +16,25 @@ document.addEventListener('DOMContentLoaded', function () {
 
     }
 
-    // function pagination(index, object) {
-    //     $(".first_page").text(`${index/6}`)
-    //     if ($(".first_page").text() == '0') {
-    //         $(".first_page").css('opacity', '0')
-    //         $('window').focus();
-    //     } else {
-    //         $(".first_page").css('opacity', '1')
-    //     }
-    //     $(".second_page").text(`${index/6+1}`)
-    //     $(".third_page").text(`${index/6+2}`)
-
-    //     if (object != null) {
-    //         if (index >= (object.photos.length - object.photos.length % 6 - 6)) {
-    //             $(".third_page").css("opacity", '0');
-    //         }
-
-    //     }
-    // }
+    function pagination(index, arr) {
+        $(".first_page").text(`${index/6}`)
+        if ($(".first_page").text() == '0') {
+            $(".first_page").css('opacity', '0')
+            $('window').focus();
+        } else {
+            $(".first_page").css('opacity', '1')
+            
+        }
+        $(".second_page").text(`${index/6+1}`)
+        $(".third_page").text(`${index/6+2}`)
+        
+        if (arr!= null) {
+            if (index >= (arr.length - 6) && index >0) {
+                $(".third_page").css("opacity", '0');
+            } 
+        }
+        
+    }
 
     $.ajax({
         url: 'https://images-api.nasa.gov/asset/as11-40-5874',
@@ -44,7 +46,6 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log(error.responseText);
     })
 
-    
 
 
     function diplayPhotos(rover, sol) {
@@ -57,15 +58,16 @@ document.addEventListener('DOMContentLoaded', function () {
                 $('.loading').css('display', 'flex');
             },
             complete: function () {
+                
                 setTimeout(function () {
                     $('.loading').hide();
                     $(".photos_sec").show()
-                }, 500);
+                }, 800);
 
             }
 
         }).done(function (response) {
-            let i = 0;         
+            let i = 0;
             setPhoto(i, response);
             if (response.photos.length > 0) {
                 $(".res_name").text(rover)
@@ -78,52 +80,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 $(".res_day").text()
                 $(".res_pic").text("No photos were taken")
             }
-
-            $(".next").on('click', function (e) {
-                e.preventDefault();
-                console.log(i)
-                if (i < response.photos.length - 6) {
-                    i += 6;
-                    $('.sec_second').children().hide()
-                    $('.sec_second').children().slice(i, i + 6).show();
-                    //pagination(i, response);
-                } 
-            })
-
-            $(".prev").on('click', function (e) {
-                e.preventDefault();
-                if (i >= 6) {
-                    i -= 6;
-                    $('.sec_second').children().hide();
-                    $('.sec_second').children().slice(i, i + 6).show();
-                   // pagination(i, response);
-                }
-            })
-
-            $(".first_page").on('click', function (e) {
-
-                e.preventDefault();
-                if (i >= 6) {
-                    i -= 6;
-                    $('.sec_second').children().hide();
-                    $('.sec_second').children().slice(i, i + 6).show();
-                    //pagination(i, response);
-                }
-            })
-
-            $(".second_page").on('click', function (e) {
-                e.preventDefault()
-            })
-            $(".third_page").on('click', function (e) {
-                e.preventDefault();
-                if (i < response.photos.length - 6) {
-                    i += 6;
-                    $('.sec_second').children().hide()
-                    $('.sec_second').children().slice(i, i + 6).show();
-                   // pagination(i, response);
-                }
-            })
-         
 
         }).fail(function (error) {
             console.log(error.responseText);
@@ -169,11 +125,13 @@ document.addEventListener('DOMContentLoaded', function () {
         e.preventDefault();
         let roverName = $('.btn-group').find('.active').text();
         let solNumber = $('.pickNumber').val();
-       
+
         diplayPhotos(roverName, solNumber);
         $('.pickNumber').val('');
-        //pagination(0);
-       
+        i = 0;
+        pagination(0);
+        $(".third_page").css("opacity", '1')
+
     })
 
     $("body").on("click", ".photo", function () {
@@ -241,5 +199,54 @@ document.addEventListener('DOMContentLoaded', function () {
         e.stopPropagation();
     })
 
+    ///PAGINATION
+
+    $(".next").on('click', function (e) {
+        e.preventDefault();
+
+        if (i < $('.photo').length - 6) {
+            i += 6;
+            $('.sec_second').children().hide()
+            $('.sec_second').children().slice(i, i + 6).show();
+
+        }
+         pagination(i, $('.photo'));
+    })
+
+    $(".prev").on('click', function (e) {
+        e.preventDefault();
+        if (i >= 6) {
+            i -= 6;
+            $('.sec_second').children().hide();
+            $('.sec_second').children().slice(i, i + 6).show();
+            pagination(i, $('.photo'));
+            $(".third_page").css("opacity", '1')
+        }
+    })
+  
+    $(".first_page").on('click', function (e) {
+
+        e.preventDefault();
+        if (i >= 6) {
+            i -= 6;
+            $('.sec_second').children().hide();
+            $('.sec_second').children().slice(i, i + 6).show();
+            pagination(i, $('.photo'));
+            $(".third_page").css("opacity", '1')
+        }
+    })
+
+    $(".second_page").on('click', function (e) {
+        e.preventDefault()
+    })
+    $(".third_page").on('click', function (e) {
+        e.preventDefault();
+        if (i < $('.photo').length - 6) {
+            i += 6;
+            $('.sec_second').children().hide()
+            $('.sec_second').children().slice(i, i + 6).show();
+            pagination(i, $('.photo'));
+        }
+    })
 
 });
