@@ -1,7 +1,8 @@
 document.addEventListener('DOMContentLoaded', function () {
+    let i = 0;
 
     function setPhoto(index, object) {
-        
+
         $(".photo").remove();
         for (k = 0; k < object.photos.length; k++) {
             $(".sec_second").append(`<div class="photo">
@@ -14,12 +15,32 @@ document.addEventListener('DOMContentLoaded', function () {
         $('.sec_second').children().slice(0, 6).show();
 
     }
+
+    function pagination(index, arr) {
+        $(".first_page").text(`${index/6}`)
+        if ($(".first_page").text() == '0') {
+            $(".first_page").css('opacity', '0')
+            $('window').focus();
+        } else {
+            $(".first_page").css('opacity', '1')
+            
+        }
+        $(".second_page").text(`${index/6+1}`)
+        $(".third_page").text(`${index/6+2}`)
+        
+        if (arr!= null) {
+            if (index >= (arr.length - 6) && index >0) {
+                $(".third_page").css("opacity", '0');
+            } 
+        }
+        
+    }
+
     $.ajax({
         url: 'https://images-api.nasa.gov/asset/as11-40-5874',
         dataType: 'json',
         method: 'GET',
     }).done(function (response) {
-            console.log(response)
         $(".sec_first_continer").css("backgroundImage", `url(${response.collection.items[2].href})`)
     }).fail(function (error) {
         console.log(error.responseText);
@@ -27,40 +48,27 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-    function pagination (index, object) {
-        $(".first_page").text(`${index/6}`)
-        if ($(".first_page").text() == '0') {
-            $(".first_page").css('opacity', '0')
-            $('window').focus();
-        } else {
-            $(".first_page").css('opacity', '1')
-        }
-        $(".second_page").text(`${index/6+1}`)
-        $(".third_page").text(`${index/6+2}`)
-
-        if (object != null) {
-        if (index >= (object.photos.length - object.photos.length % 6-6)){
-            $(".third_page").text("");
-        } 
-    }
-    }
-    pagination(0);
-
-    $(".first-list").hide();
-    $(".second-list").hide();
-
-    // RSvcKCmoFW3dPRfkvReqq8bqL69Q78uAy1XqYh1l
     function diplayPhotos(rover, sol) {
         $.ajax({
             url: `https://api.nasa.gov/mars-photos/api/v1/rovers/${rover}/photos?sol=${sol}&api_key=RSvcKCmoFW3dPRfkvReqq8bqL69Q78uAy1XqYh1l`,
             dataType: 'json',
             method: 'GET',
-        }).done(function (response) {
+            beforeSend: function () {
+                $(".photos_sec").hide();
+                $('.loading').css('display', 'flex');
+            },
+            complete: function () {
+                
+                setTimeout(function () {
+                    $('.loading').hide();
+                    $(".photos_sec").show()
+                }, 800);
 
+            }
+
+        }).done(function (response) {
             let i = 0;
-           
             setPhoto(i, response);
-            pagination(i, response)
             if (response.photos.length > 0) {
                 $(".res_name").text(rover)
                 $(".res_sol").text(sol)
@@ -70,80 +78,34 @@ document.addEventListener('DOMContentLoaded', function () {
                 $(".res_name").text(rover)
                 $(".res_sol").text(sol)
                 $(".res_day").text()
-                $(".res_pic").text("Tego dnia nie wykonano zdjęć")
+                $(".res_pic").text("No photos were taken")
             }
 
-            $(".next").on('click', function (e) {
-
-                e.preventDefault();
-                
-              
-                if (i < (response.photos.length - response.photos.length % 6-6) && response.photos.length > 6) {
-                    i += 6;
-                    console.log(i)
-                    console.log(response.photos.length)
-                  
-                    $('.sec_second').children().hide()
-                    $('.sec_second').children().slice(i, i + 6).show();
-                    pagination(i, response);
-                }
-            })
-
-            $(".prev").on('click', function (e) {
-                e.preventDefault();
-                if (i >= 6) {
-                    i -= 6;
-                    $('.sec_second').children().hide();
-                    $('.sec_second').children().slice(i, i + 6).show();
-                    pagination(i, response);
-                }
-            })
-
-            $(".first_page").on('click', function (e) {
-                
-                e.preventDefault();
-                if (i >= 6) {
-                    i -= 6;
-                    $('.sec_second').children().hide();
-                    $('.sec_second').children().slice(i, i + 6).show();
-                    pagination(i, response);
-                }
-            })
-
-            $(".second_page").on('click', function (e) {
-                e.preventDefault()
-            })
-            $(".third_page").on('click', function (e) {
-                e.preventDefault();
-                if (i < response.photos.length - 6) {
-                    i += 6;
-                    $('.sec_second').children().hide()
-                    $('.sec_second').children().slice(i, i + 6).show();
-                    pagination(i, response);
-                }
-            })
- 
-    
         }).fail(function (error) {
             console.log(error.responseText);
         })
+
+
     }
 
-
-    $('.dropdown-item').on('click', function (e) {
+    $('.mission_btn').on('click', function (e) {
         e.preventDefault();
-        console.log("klik")
-        $(this).closest('.dropdown').find('a.btn').text($(this).text());
         let rover = $(this).text();
-        $(".first-list").slideDown();
-        $(".second_header").addClass("search_ribbon")
+        $(".mission_btn").removeClass("active");
+        $(this).addClass('active');
+        $(".fbox").fadeIn().css('display', 'flex');
+        $(".photos_sec").fadeOut();
+        $(".res_name").text("--")
+        $(".res_sol").text("--")
+        $(".res_day").text("--")
+        $(".res_pic").text("--")
 
         $.ajax({
             url: `https://api.nasa.gov/mars-photos/api/v1/manifests/${rover}?&api_key=RSvcKCmoFW3dPRfkvReqq8bqL69Q78uAy1XqYh1l`,
             dataType: 'json',
             method: 'GET',
+
         }).done(function (response) {
-            console.log(response)
             $('.missionName').text(response.photo_manifest.name)
             $(".launchingDate").text(response.photo_manifest.launch_date)
             $(".landinngDate").text(response.photo_manifest.landing_date)
@@ -151,7 +113,7 @@ document.addEventListener('DOMContentLoaded', function () {
             $(".maxDate").text(response.photo_manifest.max_date)
             $(".photosTaken").text(response.photo_manifest.total_photos)
             $(".sols").text(response.photo_manifest.max_sol);
-            $(".pickNumber").attr("placeholder", `Wybierz numer (0 - ${response.photo_manifest.max_sol})`)
+            $(".pickNumber").attr("placeholder", `(0 - ${response.photo_manifest.max_sol})`)
 
         }).fail(function (error) {
             console.log(error.responseText);
@@ -161,20 +123,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
     $(".accept").on("click", function (e) {
         e.preventDefault();
-        let roverName = $('.missionName').text();
+        let roverName = $('.btn-group').find('.active').text();
         let solNumber = $('.pickNumber').val();
-        diplayPhotos(roverName, solNumber);
-        pagination(0);
-        $('.pickNumber').val('');
-        $('.second-list').slideDown();
 
-        
+        diplayPhotos(roverName, solNumber);
+        $('.pickNumber').val('');
+        i = 0;
+        pagination(0);
+        $(".third_page").css("opacity", '1')
+
     })
 
     $("body").on("click", ".photo", function () {
-        console.log("klik")
-        console.log($(this))
-        console.log($(this).children()[0].currentSrc)
         $("body").append('<div class="lightbox"></div>')
         $("body").css('overflow-x', 'hidden');
         $("body").css('overflow-y', 'hidden')
@@ -208,16 +168,85 @@ document.addEventListener('DOMContentLoaded', function () {
     })
 
 
-    $(".arrow").click(function(e) {
-        
+    $(".arrow").click(function (e) {
+
         var offset = 20; //Offset of 20px
-    
+
         $('html, body').animate({
             scrollTop: $(".info_sec").offset().top + offset
         }, 500);
     });
 
+    $('.mission-info').on('click', function (e) {
+        e.stopPropagation();
+        $('.asideTable').fadeIn();
 
 
+    })
+
+    $('.cls').on('click', function (e) {
+        e.preventDefault()
+        $('.asideTable').fadeOut();
+
+    })
+
+    $('body').on('click', function (e) {
+        e.preventDefault()
+        $('.asideTable').fadeOut();
+
+    })
+    $('.asideTable').on('click', function (e) {
+        e.stopPropagation();
+    })
+
+    ///PAGINATION
+
+    $(".next").on('click', function (e) {
+        e.preventDefault();
+
+        if (i < $('.photo').length - 6) {
+            i += 6;
+            $('.sec_second').children().hide()
+            $('.sec_second').children().slice(i, i + 6).show();
+
+        }
+         pagination(i, $('.photo'));
+    })
+
+    $(".prev").on('click', function (e) {
+        e.preventDefault();
+        if (i >= 6) {
+            i -= 6;
+            $('.sec_second').children().hide();
+            $('.sec_second').children().slice(i, i + 6).show();
+            pagination(i, $('.photo'));
+            $(".third_page").css("opacity", '1')
+        }
+    })
+  
+    $(".first_page").on('click', function (e) {
+
+        e.preventDefault();
+        if (i >= 6) {
+            i -= 6;
+            $('.sec_second').children().hide();
+            $('.sec_second').children().slice(i, i + 6).show();
+            pagination(i, $('.photo'));
+            $(".third_page").css("opacity", '1')
+        }
+    })
+
+    $(".second_page").on('click', function (e) {
+        e.preventDefault()
+    })
+    $(".third_page").on('click', function (e) {
+        e.preventDefault();
+        if (i < $('.photo').length - 6) {
+            i += 6;
+            $('.sec_second').children().hide()
+            $('.sec_second').children().slice(i, i + 6).show();
+            pagination(i, $('.photo'));
+        }
+    })
 
 });

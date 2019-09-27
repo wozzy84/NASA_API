@@ -1,103 +1,190 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>NASA API Challenge</title>
-    <link rel="stylesheet" href="./css/main.css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+  <meta charset="UTF-8">
+  <title>NASA API Challenge</title>
+  <link rel="stylesheet" href="./css/main.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://use.fontawesome.com/cf9698fbcc.js"></script>
 </head>
+
 <body>
-    <section class="title_sec">
+  <section class="title_sec">
     <div class="sec_first">
-        <div class="sec_first_continer">
-          <h1 class="display-4">__NASA API Challenge__</h1>
-          
-        </div>
+      <div class="sec_first_continer">
+        <h1 class="display-4">__NASA API Challenge__</h1>
+
       </div>
-      <div class="arrow"></div>
-    </section>
-    <section class="info_sec">  
-          <div class="container info_panel">
-                        
-            <ul class ="list-group">
-              <li class="dropdown list-group-item list-group-item-action active">
-                <a class="dropdown-toggle" role="button" data-toggle="dropdown">  Wybierz nazwę misji na Marsa<span class="caret"></span></a>
-              
-                <div class="dropdown-menu" role="menu">
-
-                    
-                  <a class="dropdown-item" a href="#">Curiosity</a>
-                  <a class="dropdown-item" href="#">Opportunity</a>
-                  <a class="dropdown-item" href="#">Spirit</a>
-                </div>
-              </li>
-              <li class="list-group-item list-group-item first-list">Nazwa misji: <span class="missionName"></span></li>
-              <li class="list-group-item list-group-item first-list">Data startu: <span class="launchingDate"></span></li>
-              <li class="list-group-item list-group-item first-list">Data lądowania: <span class="landinngDate"></span></li>
-              <li class="list-group-item list-group-item first-list">Status: <span class="status"></span></li>
-              <li class="list-group-item list-group-item first-list">Ostatnie wykonane zdjęcia: <span class="maxDate"></span></li>
-              <li class="list-group-item list-group-item first-list">Liczba zdjęć: <span class="photosTaken"></span></li>
-              <li class="list-group-item list-group-item first-list">Liczba dni marsjańskich misji: <span class="sols"></span></li>
-              <li class=" list-group-item list-group-item-action active first-list second_header">
-                  Wybierz dzień marsjański misji <input type="number" class="pickNumber form-control" placeholder="Podaj liczbę (1-1000)" aria-describedby="basic-addon2">
-                  <button class="btn  btn-light accept"> Zatwierdź</buttnon></li> 
-                <li class="list-group-item  list-group-item second-list">Nazwa Misji: <span class="res_name"></span></li>
-                <li class="list-group-item  list-group-item second-list">Dzień Marsjański misji: <span class="res_sol"></span></li>
-                <li class="list-group-item  list-group-item second-list">Dzień ziemski misji: <span class="res_day"></span></li>
-                <li class="list-group-item  list-group-item second-list">Liczba wykonanych zdjęć: <span class="res_pic"></span></li>
-            </ul>
-           
-            
-           
-            
-          </div>
-           
-       
-          <div class="container">
-            <ul class="list-group">
-              
-            </ul>
-        
-          </div>
-        </section> 
-          <section class="photos_sec">
-    <div class = "sec_second container">
-
-    
-    </div>  
-    <div class="container btn-container">
-           
-            <nav aria-label="...">
-                    <ul class="pagination">
-                      <li class="page-item ">
-                        <a class="page-link prev" href="#">Previous</a>
-                      </li>
-                      <li class="page-item"><a class="page-link first_page" href="#">1</a></li>
-                      <li class="page-item active">
-                        <span class="page-link second_page">
-                          2
-                          <span class="sr-only">(current)</span>
-                        </span>
-                      </li>
-                      <li class="page-item"><a class="page-link third_page" href="#">3</a></li>
-                      <li class="page-item">
-                        <a class="page-link next" href="#">Next</a>
-                      </li>
-                    </ul>
-                  </nav>
     </div>
+    <div class="arrow"></div>
+  </section>
+  <section class="info_sec">
+    <div class="container info_panel">
 
-   </section>
 
-    <script src="./js/jquery-3.1.1.min.js"></script>
-    
-  
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script src="./js/app.js"></script>
+      <nav class="navbar navbar-dark bg-dark">
 
-  </body>
+        <h3 class="choose">Choose the mission</h3>
+
+        <div class="btn-group" role="group" aria-label="Basic example">
+          <button type="button" class="btn btn-secondary mission_btn">Curiosity</button>
+          <button type="button" class="btn btn-secondary mission_btn">Opportunity</button>
+          <button type="button" class="btn btn-secondary mission_btn">Spirit</button>
+        </div>
+
+      </nav>
+
+
+      <div class="panel container">
+        <table class="table table-hover table-dark">
+          
+
+          <tbody>
+            <tr>
+              <th>Mission:</th>
+              <td class="res_name">--</td>
+              <th>Sol Day:</th>
+              <td class="res_sol">--</td>
+              <th>Earth Date:</th>
+              <td class="res_day">--</td>
+              <th>Photos:</th>
+              <td class="res_pic">--</td>
+
+
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="fbox">
+          <button type="button" class="btn btn-secondary mission-info">Mission Info</button>
+          <div class="input-group chooseSol">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default" >Choose Sol Day:</span>
+            </div>
+            <input type="number" class="nbInput pickNumber" aria-label="Default"
+              aria-describedby="inputGroup-sizing-default">
+            <button type="button" class="btn btn-secondary accept">ok</button>
+          </div>
+
+        </div>
+
+
+        <div>
+          <table class="table table-hover table-dark asideTable">
+
+            <tbody>
+              <tr>
+                <th>Launch date:</th>
+                <td class="launchingDate">--</td>
+              <tr>
+                <th>Landing date:</th>
+                <td class="landinngDate">--</td>
+
+              </tr>
+              <tr>
+                <th>Status:</th>
+                <td class="status">--</td>
+              </tr>
+              <tr>
+                <th>Total photos:</th>
+                <td class="photosTaken">--</td>
+              </tr>
+              </tr>
+              <tr>
+                <th>Latest photo:</th>
+                <td class="maxDate">--</td>
+              </tr>
+              <tr>
+                <th>Sols:</th>
+                <td class="sols">--</td>
+              </tr>
+              <tr>
+                <th></th>
+                <td><a href="#" class="cls">Close<i class="fa fa-times-circle" aria-hidden="true"></i></a></td>
+              </tr>
+
+
+
+            </tbody>
+          </table>
+
+
+        </div>
+
+
+
+
+
+
+      </div>
+
+
+      <div class="container">
+
+
+
+
+      </div>
+
+      <section class="photos_sec">
+        <div class="sec_second container">
+
+
+        </div>
+        <div class="container btn-container">
+
+          <nav aria-label="...">
+            <ul class="pagination">
+              <li class="page-item ">
+                <a class="page-link prev" id="prevLink" href="#">Previous</a>
+              </li>
+              <li class="page-item"><a class="page-link first_page" href="#">1</a></li>
+              <li class="page-item active" >
+                <span class="page-link second_page" id ="pg_active">
+                  2
+                  <span class="sr-only">(current)</span>
+                </span>
+              </li>
+              <li class="page-item"><a class="page-link third_page" href="#">3</a></li>
+              <li class="page-item">
+                <a class="page-link next" id="nextLink" href="#">Next</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+
+      </section>
+      <div class="load_container">
+          <div class="loading">
+          <h3 class="load">Loading...</h3>
+          <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+      </div>
+
+
+      </div>
+      
+
+
+  </section>
+
+
+  <script src="./js/jquery-3.1.1.min.js"></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+  </script>
+  <script src="./js/app.js"></script>
+
 </body>
+</body>
+
 </html>
