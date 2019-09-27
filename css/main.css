@@ -173,7 +173,8 @@
     width: 250px !important;
 }
 .accept {
-    color:#007bff !important;
+   
+    width: 150px;
 }
 
 .info_sec {
@@ -196,15 +197,14 @@ th, td {
     text-align: center !important;
     
 }
-.ok {
-    width: 150px;
-}
+
 .nbInput{
 width: 150px !important;
 }
 .fbox {
-    display: flex;
+    display: none;
     justify-content: space-between;
+    
 }
 
 .chooseSol {
@@ -258,4 +258,33 @@ i {
 #prevLink:hover {
     background:#5a6066 !important;
 }
-  
+
+.input-group-text {
+    background: #6c757d !important;
+    color: white !important; 
+}
+.pickNumber {
+    text-align: center;
+}
+
+.photos_sec {
+    display: none;
+}
+
+.loading {
+    
+    margin: 0 auto;
+    background:rgba(211,211,211 ,0.6 );
+    border-radius: 55px;
+    padding: 15px;
+    width: 250px;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top:50px;
+}
+.load {
+    font-size:34px;
+
+}
