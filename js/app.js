@@ -125,13 +125,16 @@ document.addEventListener('DOMContentLoaded', function () {
         e.preventDefault();
         let roverName = $('.btn-group').find('.active').text();
         let solNumber = $('.pickNumber').val();
-
+        if (solNumber !== "" && solNumber !== "0")  {
         diplayPhotos(roverName, solNumber);
         $('.pickNumber').val('');
         i = 0;
         pagination(0);
         $(".third_page").css("opacity", '1')
-
+        }
+         if (solNumber == "" || solNumber == "0")  {
+            $('.pickNumber').val('');
+        }
     })
 
     $("body").on("click", ".photo", function () {
@@ -142,7 +145,7 @@ document.addEventListener('DOMContentLoaded', function () {
         <p class="pic_descr"> Mission: ${$(".res_name").text()} | Photo ID : ${$(this).children().data("id")} | Earth date ${$(this).children().data("earthdate")} | Camera: ${$(this).children().data("camera")} </p>
         <img  class="img_big" src = "">
         </img>
-        <button type="button" class="close" id="cls" aria-label="Close">Zamknij
+        <button type="button" class="close" id="cls" aria-label="Close">Close
         <span aria-hidden="true">&times;</span>
       </button>
         </div>`);
@@ -184,7 +187,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     })
 
-    $('.cls').on('click', function (e) {
+    $('.quit').on('click', function (e) {
         e.preventDefault()
         $('.asideTable').fadeOut();
 

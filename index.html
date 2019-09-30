@@ -4,17 +4,18 @@
 <head>
   <meta charset="UTF-8">
   <title>NASA API Challenge</title>
-  <link rel="stylesheet" href="./css/main.css" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="./css/main.css" />
   <script src="https://use.fontawesome.com/cf9698fbcc.js"></script>
 </head>
 
 <body>
-  <section class="title_sec">
+  <section class="title_sec ">
     <div class="sec_first">
-      <div class="sec_first_continer">
+      <div class="sec_first_continer container-fluid">
         <h1 class="display-4">__NASA API Challenge__</h1>
 
       </div>
@@ -22,26 +23,21 @@
     <div class="arrow"></div>
   </section>
   <section class="info_sec">
-    <div class="container info_panel">
+    <div class="info_panel">
 
-
+        <div class="container">
       <nav class="navbar navbar-dark bg-dark">
-
         <h3 class="choose">Choose the mission</h3>
-
         <div class="btn-group" role="group" aria-label="Basic example">
           <button type="button" class="btn btn-secondary mission_btn">Curiosity</button>
           <button type="button" class="btn btn-secondary mission_btn">Opportunity</button>
           <button type="button" class="btn btn-secondary mission_btn">Spirit</button>
         </div>
-
       </nav>
 
-
-      <div class="panel container">
+      <div class="panel">
+        
         <table class="table table-hover table-dark">
-          
-
           <tbody>
             <tr>
               <th>Mission:</th>
@@ -52,29 +48,38 @@
               <td class="res_day">--</td>
               <th>Photos:</th>
               <td class="res_pic">--</td>
-
-
             </tr>
           </tbody>
         </table>
 
         <div class="fbox">
-          <button type="button" class="btn btn-secondary mission-info">Mission Info</button>
-          <div class="input-group chooseSol">
-            <div class="input-group-prepend">
-              <span class="input-group-text" id="inputGroup-sizing-default" >Choose Sol Day:</span>
+            <div class="container">
+            <div class="row wrap-raw justify-content-between">
+              <div class="fbox__missionInfo col-3 order-lg-1 order-md-1 order-2">
+                  <button type="button" class="btn btn-secondary mission-info">Mission&nbsp;Info</button>
+              </div>
+  
+              <div class="fbox__chooseSol col-4 test order-lg-2 order-md-2 order-1">
+                  <div class="input-group chooseSol">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Choose Sol Day:</span>
+                  </div>
+                  <input type="number" class="nbInput pickNumber" aria-label="Default"
+                    aria-describedby="inputGroup-sizing-default">
+                  <button type="button" class="btn btn-secondary accept">ok</button>
+                </div>
+              </div>
+                
+                
+              </div>
             </div>
-            <input type="number" class="nbInput pickNumber" aria-label="Default"
-              aria-describedby="inputGroup-sizing-default">
-            <button type="button" class="btn btn-secondary accept">ok</button>
           </div>
 
-        </div>
-
+      </div>    
+  
 
         <div>
           <table class="table table-hover table-dark asideTable">
-
             <tbody>
               <tr>
                 <th>Launch date:</th>
@@ -82,7 +87,6 @@
               <tr>
                 <th>Landing date:</th>
                 <td class="landinngDate">--</td>
-
               </tr>
               <tr>
                 <th>Status:</th>
@@ -103,47 +107,26 @@
               </tr>
               <tr>
                 <th></th>
-                <td><a href="#" class="cls">Close<i class="fa fa-times-circle" aria-hidden="true"></i></a></td>
+                <td><a href="#" class="quit">Close<i class="fa fa-times-circle icon-close" aria-hidden="true"></i></a>
+                </td>
               </tr>
-
-
-
             </tbody>
           </table>
-
-
         </div>
-
-
-
-
-
-
       </div>
 
-
-      <div class="container">
-
-
-
-
-      </div>
-
-      <section class="photos_sec">
+      <div class="photos_sec">
         <div class="sec_second container">
-
-
         </div>
         <div class="container btn-container">
-
           <nav aria-label="...">
             <ul class="pagination">
               <li class="page-item ">
                 <a class="page-link prev" id="prevLink" href="#">Previous</a>
               </li>
               <li class="page-item"><a class="page-link first_page" href="#">1</a></li>
-              <li class="page-item active" >
-                <span class="page-link second_page" id ="pg_active">
+              <li class="page-item active">
+                <span class="page-link second_page" id="pg_active">
                   2
                   <span class="sr-only">(current)</span>
                 </span>
@@ -155,21 +138,16 @@
             </ul>
           </nav>
         </div>
+      </div>
 
-      </section>
       <div class="load_container">
-          <div class="loading">
+        <div class="loading">
           <h3 class="load">Loading...</h3>
           <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
-              <span class="sr-only">Loading...</span>
-            </div>
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
       </div>
-
-
-      </div>
-      
-
-
   </section>
 
 
