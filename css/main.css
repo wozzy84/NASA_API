@@ -263,3 +263,19 @@ input[type=number]::-webkit-outer-spin-button {
     padding-right: 0px;
     padding-left: 0px;
 }
+
+@media (max-width: 768px) {
+    .info_panel {
+      width: 100%;
+      max-width: none;
+      padding-left:0px;
+      padding-right: 0px;
+      
+    }
+  }
+  @media (max-width: 768px) {
+    .container {
+      width: 100% !important;
+      max-width: none;
+    }
+  }
