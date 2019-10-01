@@ -25,7 +25,7 @@
   <section class="info_sec">
     <div class="info_panel">
 
-        <div class="container">
+        <div class="container navbarContainer">
       <nav class="navbar navbar-dark bg-dark">
         <h3 class="choose">Choose the mission</h3>
         <div class="btn-group" role="group" aria-label="Basic example">
@@ -55,21 +55,21 @@
         <div class="fbox">
             <div class="container">
             <div class="row wrap-raw justify-content-between">
-              <div class="fbox__missionInfo col-3 order-lg-1 order-md-1 order-2">
-                  <button type="button" class="btn btn-secondary mission-info">Mission&nbsp;Info</button>
-              </div>
+              
   
-              <div class="fbox__chooseSol col-4 test order-lg-2 order-md-2 order-1">
+              <div class="fbox__chooseSol col-4 test">
                   <div class="input-group chooseSol">
                   <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Choose Sol Day:</span>
+                    <span class="input-group-text choose_sol_day_span" id="inputGroup-sizing-default">Choose Sol Day:</span><span class="span_sol input-group-text">Sol:</span>
                   </div>
                   <input type="number" class="nbInput pickNumber" aria-label="Default"
                     aria-describedby="inputGroup-sizing-default">
                   <button type="button" class="btn btn-secondary accept">ok</button>
                 </div>
               </div>
-                
+              <div class="fbox__missionInfo col-3">
+                <button type="button" class="btn btn-secondary mission-info">Mission&nbsp;Info</button>
+            </div>
                 
               </div>
             </div>
@@ -78,7 +78,7 @@
       </div>    
   
 
-        <div>
+        <div class="asideTable_container">
           <table class="table table-hover table-dark asideTable">
             <tbody>
               <tr>
@@ -115,7 +115,7 @@
         </div>
       </div>
 
-      <div class="photos_sec">
+      <div class="photos_sec container">
         <div class="sec_second container">
         </div>
         <div class="container btn-container">

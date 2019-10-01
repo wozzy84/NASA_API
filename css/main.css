@@ -139,6 +139,10 @@
     color:white;
 }
 
+.navbarContainer{
+    padding-right: 0px;
+    padding-left: 0px; 
+}
 .panel {
  
     background:rgba(211,211,211 ,0.6 );
@@ -163,8 +167,25 @@ width: 150px;
     flex-wrap: nowrap;
     justify-content: flex-end;
 }
+
+.asideTable_container {
+    display: flex;
+    justify-content: flex-end;
+}
+@media (max-width:622px) {
+    .asideTable_container {
+        justify-content: flex-start;
+    }
+}
+
 .asideTable {
     width: 350px;
+    display: none;
+    z-index: 1;
+    position: absolute;
+    opacity: 0.8;
+  
+
     
 }
 
@@ -179,16 +200,10 @@ width: 150px;
     margin-left: 10px;
 }
 
-.asideTable {
-    display: none;
-   z-index: 1;
-    position: absolute;
-    opacity: 0.8;
-}
-
 .photos_sec {
     background:rgba(211,211,211 ,0.6 );
     padding-top: 25px;
+  
     
     
 }
@@ -258,7 +273,18 @@ input[type=number]::-webkit-outer-spin-button {
 .fbox__missionInfo{
     padding-left: 0px;
     padding-right: 0px;
+    display: flex;
+    justify-content: flex-end;
 }
+@media (max-width:622px) {
+    .fbox__missionInfo {
+        justify-content: flex-start;
+        padding-top: 5px;
+    }
+}
+
+
+
 .fbox__chooseSol{
     padding-right: 0px;
     padding-left: 0px;
@@ -278,4 +304,49 @@ input[type=number]::-webkit-outer-spin-button {
       width: 100% !important;
       max-width: none;
     }
+  }
+
+  @media (max-width:735px) {
+      .table-dark {
+          display: none;
+
+      }
+      .display-4 {
+          font-size: 28px;
+      }
+  }
+  .span_sol {
+      display: none;
+  }
+
+  @media (max-width: 433px) {
+      .pickNumber{
+          width: 80px;
+      }
+      .choose_sol_day_span {
+        display: none;    
+      }
+      .span_sol{
+          display: flex;
+          
+      }
+      .wrap-raw {
+          flex-direction: column;
+      }
+      .chooseSol {
+          justify-content: flex-start;
+      } 
+
+  }
+  @media (max-width:1120px){
+    .info_sec {
+        background-repeat: repeat-y;
+     height: 1250px;
+    };
+  }
+  @media (max-width:632px){
+    .info_sec {
+        background-repeat: repeat-y;
+     height: 2150px;
+    };
   }
