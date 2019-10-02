@@ -1,6 +1,23 @@
 document.addEventListener('DOMContentLoaded', function () {
     let i = 0;
+    $(window).resize(function() {
+        if(
 
+            $(".ribbon-table").hasClass("active-table")
+             ||
+            $(".photo_desc_list").hasClass("active-table")
+        ){ console.log("active")
+            if ($(window).width() >= 820) {
+                $(".ribbon-table").show();
+                $(".photo_desc_list").hide();
+            }
+           else {
+                $(".ribbon-table").hide();
+                $(".photo_desc_list").show();
+           }
+        }
+   
+      });
     function setPhoto(index, object) {
 
         $(".photo").remove();
@@ -95,10 +112,14 @@ document.addEventListener('DOMContentLoaded', function () {
         $(this).addClass('active');
         $(".fbox").fadeIn().css('display', 'flex');
         $(".photos_sec").fadeOut();
-        $(".res_name").text("--")
-        $(".res_sol").text("--")
-        $(".res_day").text("--")
-        $(".res_pic").text("--")
+        $(".res_name").text("--");
+        $(".res_sol").text("--");
+        $(".res_day").text("--");
+        $(".res_pic").text("--");
+        $(".ribbon-table ").fadeOut();
+        $(".photo_desc_list").fadeOut();
+        $(".ribbon-table ").removeClass('active-table');
+        $(".photo_desc_list").removeClass('active-table')
 
         $.ajax({
             url: `https://api.nasa.gov/mars-photos/api/v1/manifests/${rover}?&api_key=RSvcKCmoFW3dPRfkvReqq8bqL69Q78uAy1XqYh1l`,
@@ -135,6 +156,15 @@ document.addEventListener('DOMContentLoaded', function () {
          if (solNumber == "" || solNumber == "0")  {
             $('.pickNumber').val('');
         }
+        
+        if ($(window).width() >= 820) {
+            $(".ribbon-table").fadeIn();
+            $(".ribbon-table").addClass('active-table')
+         }
+         else {
+            $(".photo_desc_list").fadeIn();
+            $(".photo_desc_list").addClass('active-table')
+         }
     })
 
     $("body").on("click", ".photo", function () {
