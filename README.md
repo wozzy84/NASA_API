@@ -5,9 +5,9 @@ Prosta przeglądarka do zdjęć NASA, wykonanych w trakcie trzech misji marsjań
 - Opportunity, 
 - Spirit.  
 
-> ## Nasa API Challange
-> To nazwa zadania realizowanego na zajęciach w ramach bootcampu CodersLab.  
-> Zdjęcia udostępniane są przy użyciu API [wystawionego przez NASA](https://api.nasa.gov/index.html).  
+## Nasa API Challange
+To nazwa zadania realizowanego na zajęciach w ramach bootcampu CodersLab.  
+Zdjęcia udostępniane są przy użyciu API [wystawionego przez NASA](https://api.nasa.gov/index.html).  
 
 ## Jak korzystać?
 1. Wybierz jedną z trzech misji marsjańskich.
