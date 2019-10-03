@@ -1,23 +1,24 @@
 document.addEventListener('DOMContentLoaded', function () {
     let i = 0;
-    $(window).resize(function() {
-        if(
+    let offset = 20;
+    $(window).resize(function () {
+        if (
 
-            $(".ribbon-table").hasClass("active-table")
-             ||
+            $(".ribbon-table").hasClass("active-table") ||
             $(".photo_desc_list").hasClass("active-table")
-        ){ console.log("active")
+        ) {
+            console.log("active")
             if ($(window).width() >= 820) {
                 $(".ribbon-table").show();
                 $(".photo_desc_list").hide();
-            }
-           else {
+            } else {
                 $(".ribbon-table").hide();
                 $(".photo_desc_list").show();
-           }
+            }
         }
-   
-      });
+
+    });
+
     function setPhoto(index, object) {
 
         $(".photo").remove();
@@ -40,17 +41,17 @@ document.addEventListener('DOMContentLoaded', function () {
             $('window').focus();
         } else {
             $(".first_page").css('opacity', '1')
-            
+
         }
         $(".second_page").text(`${index/6+1}`)
         $(".third_page").text(`${index/6+2}`)
-        
-        if (arr!= null) {
-            if (index >= (arr.length - 6) && index >0) {
+
+        if (arr != null) {
+            if (index >= (arr.length - 6) && index > 0) {
                 $(".third_page").css("opacity", '0');
-            } 
+            }
         }
-        
+
     }
 
     $.ajax({
@@ -75,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 $('.loading').css('display', 'flex');
             },
             complete: function () {
-                
+
                 setTimeout(function () {
                     $('.loading').hide();
                     $(".photos_sec").show()
@@ -84,6 +85,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
         }).done(function (response) {
+
             let i = 0;
             setPhoto(i, response);
             if (response.photos.length > 0) {
@@ -91,11 +93,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 $(".res_sol").text(sol)
                 $(".res_day").text(response.photos[0].earth_date)
                 $(".res_pic").text(response.photos.length)
+                $(".pagination").css("display", "flex")
             } else {
                 $(".res_name").text(rover)
                 $(".res_sol").text(sol)
                 $(".res_day").text()
                 $(".res_pic").text("No photos were taken")
+                $(".pagination").css("display", "none")
             }
 
         }).fail(function (error) {
@@ -127,6 +131,7 @@ document.addEventListener('DOMContentLoaded', function () {
             method: 'GET',
 
         }).done(function (response) {
+            console.log(response)
             $('.missionName').text(response.photo_manifest.name)
             $(".launchingDate").text(response.photo_manifest.launch_date)
             $(".landinngDate").text(response.photo_manifest.landing_date)
@@ -146,25 +151,28 @@ document.addEventListener('DOMContentLoaded', function () {
         e.preventDefault();
         let roverName = $('.btn-group').find('.active').text();
         let solNumber = $('.pickNumber').val();
-        if (solNumber !== "" && solNumber !== "0")  {
-        diplayPhotos(roverName, solNumber);
-        $('.pickNumber').val('');
-        i = 0;
-        pagination(0);
-        $(".third_page").css("opacity", '1')
+        if (solNumber !== "" && solNumber !== "0") {
+            diplayPhotos(roverName, solNumber);
+            $('.pickNumber').val('');
+            i = 0;
+            pagination(0);
+            $(".third_page").css("opacity", '1')
+            if ($(window).width() >= 820) {
+                $(".ribbon-table").fadeIn();
+                $(".ribbon-table").addClass('active-table')
+            } else {
+                $(".photo_desc_list").fadeIn();
+                $(".photo_desc_list").addClass('active-table')
+            }
+
+
+
         }
-         if (solNumber == "" || solNumber == "0")  {
+        if (solNumber == "" || solNumber == "0") {
             $('.pickNumber').val('');
         }
-        
-        if ($(window).width() >= 820) {
-            $(".ribbon-table").fadeIn();
-            $(".ribbon-table").addClass('active-table')
-         }
-         else {
-            $(".photo_desc_list").fadeIn();
-            $(".photo_desc_list").addClass('active-table')
-         }
+
+
     })
 
     $("body").on("click", ".photo", function () {
@@ -172,12 +180,24 @@ document.addEventListener('DOMContentLoaded', function () {
         $("body").css('overflow-x', 'hidden');
         $("body").css('overflow-y', 'hidden')
         $("body").append(`<div class="imgBox">
-        <p class="pic_descr"> Mission: ${$(".res_name").text()} | Photo ID : ${$(this).children().data("id")} | Earth date ${$(this).children().data("earthdate")} | Camera: ${$(this).children().data("camera")} </p>
-        <img  class="img_big" src = "">
-        </img>
+        <div class="desc_ribbon">
+        
+        <p class="pic_descr"> 
+        Mission: ${$("td.res_name").text()} | 
+        Photo ID: ${$(this).children().data("id")} | 
+        Earth date: <span class="nb_span">${$(this).children().data("earthdate")} |</span>
+        Camera: ${$(this).children().data("camera")} </p>
         <button type="button" class="close" id="cls" aria-label="Close">Close
         <span aria-hidden="true">&times;</span>
-      </button>
+        </button>
+        <button type="button" class="close round_close" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+       
+        <img  class="img_big" src = "">
+        </img>
+       
         </div>`);
         $(".imgBox").find('.img_big').attr("src", $(this).children()[0].currentSrc);
 
@@ -188,7 +208,10 @@ document.addEventListener('DOMContentLoaded', function () {
         $(".imgBox").remove();
         $('.lightbox').remove();
         $("body").css('overflow-x', 'auto');
-        $("body").css('overflow-y', 'auto')
+        $("body").css('overflow-y', 'auto');
+
+
+
 
     }
     $("body").on("click", ".lightbox", function () {
@@ -196,14 +219,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
     })
 
-    $("body").on("click", "#cls", function () {
+    $("body").on("click", ".close", function () {
         closeLbox()
     })
 
 
     $(".arrow").click(function (e) {
 
-        var offset = 20; //Offset of 20px
+
 
         $('html, body').animate({
             scrollTop: $(".info_sec").offset().top + offset
@@ -243,7 +266,7 @@ document.addEventListener('DOMContentLoaded', function () {
             $('.sec_second').children().slice(i, i + 6).show();
 
         }
-         pagination(i, $('.photo'));
+        pagination(i, $('.photo'));
     })
 
     $(".prev").on('click', function (e) {
@@ -256,7 +279,7 @@ document.addEventListener('DOMContentLoaded', function () {
             $(".third_page").css("opacity", '1')
         }
     })
-  
+
     $(".first_page").on('click', function (e) {
 
         e.preventDefault();
